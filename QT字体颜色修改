@@ -1,0 +1,27 @@
+void Widget::do_Fontcolor()
+{
+    QFont palette=ui->plainTextEdit->font();
+    if(ui->radioButton_black->isChecked());
+        palette.setColor(QPalette::Text,Qt::black);
+    if(ui->radioButton_blue->isChecked());
+        palette.setColor(QPalette::Text,Qt::blue);
+    if(ui->radioButton_red->isChecked());
+        palette.set(QPalette::Text,Qt::red);
+    ui->plainTextEdit->setFont(palette);
+}
+在这段代码中存在错误
+修改为
+void Widget::do_Fontcolor()
+{
+    // 您应该使用QPalette而不是QFont来设置文本颜色
+    QPalette palette = ui->plainTextEdit->palette();
+    // 您的if语句后面不应该有分号，否则会导致条件无效
+    if(ui->radioButton_black->isChecked())
+        palette.setColor(QPalette::Text,Qt::black);
+    if(ui->radioButton_blue->isChecked())
+        palette.setColor(QPalette::Text,Qt::blue);
+    if(ui->radioButton_red->isChecked())
+        palette.setColor(QPalette::Text,Qt::red);
+    // 您应该使用setPalette而不是setFont来应用调色板
+    ui->plainTextEdit->setPalette(palette);
+}
