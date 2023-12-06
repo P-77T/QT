@@ -1,0 +1,52 @@
+在qt里图形布局用图标
+但代码布局
+Dialog::Dialog(QWidget *parent)
+    : QDialog(parent)
+{
+    chkboxBold = new QCheckBox("加粗");
+    chkboxItalic = new QCheckBox("斜体");
+    chkboxUnder = new QCheckBox("下划线");
+    QHBoxLayout *HLayl = new QHBoxLayout;
+    HLayl->addWidget(chkboxBold);
+    HLayl->addWidget(chkboxItalic);
+    HLayl->addWidget(chkboxUnder);
+
+
+    btnOK = new QPushButton("ok");
+    btnclear = new QPushButton("clear");
+    btnclose = new QPushButton("close");
+    QHBoxLayout *HLayl1 = new QHBoxLayout;
+    HLayl1->addStretch();
+    HLayl1->addWidget(btnclear);
+    HLayl1->addStretch();
+    HLayl1->addWidget(btnOK);
+    HLayl1->addWidget(btnclose);
+    //setLayout(HLayl1);
+
+    radioBlack = new QRadioButton("黑色");
+    radioRed = new QRadioButton("红色");
+    radioBlue = new QRadioButton("蓝色");
+    QHBoxLayout *HLayl2 = new QHBoxLayout;
+    HLayl2->addWidget(radioBlack);
+    HLayl2->addWidget(radioBlue);
+    HLayl2->addWidget(radioRed);
+    //setLayout(HLayl2);
+
+    txtEdit = new QPlainTextEdit;
+    txtEdit->setPlainText("I'm a Keyboard warrior\n @@@@@@");
+    QFont font = txtEdit->font();
+    font.setPointSize(20);
+    txtEdit->setFont(font);
+
+    QVBoxLayout *VLayl =new QVBoxLayout;
+    VLayl->addLayout(HLayl);
+    VLayl->addLayout(HLayl2);
+    VLayl->addWidget(txtEdit);
+    VLayl->addLayout(HLayl1);
+ //为啥 此处不需要加
+//    setLayout(HLayl);
+//    setLayout(HLayl1);      
+//    setLayout(HLayl2);
+    setLayout(VLayl);
+   
+}
