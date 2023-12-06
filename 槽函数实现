@@ -1,0 +1,46 @@
+
+槽函数转到需要实现功能的函数
+void Dialog::do_chkBoxUnder(bool checked)
+{
+    QFont font = txtEdit->font();
+    font.setUnderline(checked);
+    txtEdit->setFont(font);
+}
+
+void Dialog::do_chkBoxItalic(bool checked)
+{
+    QFont font = txtEdit->font();
+    font.setItalic(checked);
+    txtEdit->setFont(font);
+}
+
+void Dialog::do_chkBoxBold(bool checked)
+{
+    QFont font = txtEdit->font();
+    font.setBold(checked);
+    txtEdit->setFont(font);
+}
+
+void Dialog::do_setFontColor()
+{
+    QPalette plet = txtEdit->palette();
+    if(radioBlack->isChecked())
+        plet.setColor(QPalette::Text,Qt::black);
+    if(radioBlue->isChecked())
+        plet.setColor(QPalette::Text,Qt::blue);
+    if(radioRed->isChecked())
+        plet.setColor(QPalette::Text,Qt::red);
+    txtEdit->setPalette(plet);
+}
+//槽函数
+    connect(chkboxUnder,SIGNAL(clicked(bool)),this,SLOT(do_chkBoxUnder(bool)));
+    connect(chkboxBold,SIGNAL(clicked(bool)),this,SLOT(do_chkBoxBold(bool)));
+    connect(chkboxItalic,SIGNAL(clicked(bool)),this,SLOT(do_chkBoxItalic(bool)));
+
+    connect(radioBlack,SIGNAL(clicked(bool)),this,SLOT(do_setFontColor()));
+    connect(radioBlue,SIGNAL(clicked(bool)),this,SLOT(do_setFontColor()));
+    connect(radioRed,SIGNAL(clicked(bool)),this,SLOT(do_setFontColor()));
+
+    connect(btnOK,SIGNAL(clicked()),this,SLOT(accept()));
+    connect(btnclear,SIGNAL(clicked()),this,SLOT(reject()));
+    connect(btnclose,SIGNAL(clicked()),this,SLOT(accept(close())));
